@@ -1,36 +1,20 @@
 import { NgModule, ModuleWithProviders, Optional, SkipSelf, Provider } from '@angular/core';
-import { JwtInterceptor } from './src/jwt.interceptor';
-import { JwtHelperService } from './src/jwthelper.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { JWT_OPTIONS } from './src/jwtoptions.token';
+import { JWT_OPTIONS } from './jwt-options.token';
+import { JwtInterceptor } from './jwt.interceptor';
+import { INgxJwtConfig } from './ngx-jwt-config.interface';
 
-export * from './src/jwt.interceptor';
-export * from './src/jwthelper.service';
-export * from './src/jwtoptions.token';
-
-export interface JwtModuleOptions {
-  jwtOptionsProvider?: Provider,
-  config?: {
-    tokenGetter?: () => string | Promise<string>;
-    headerName?: string;
-    authScheme?: string;
-    whitelistedDomains?: Array<string | RegExp>;
-    throwNoTokenError?: boolean;
-    skipWhenExpired?: boolean;
-  }
+export interface INgxJwtModuleOptions {
+  jwtOptionsProvider?: Provider;
+  config?: INgxJwtConfig;
 }
 
 @NgModule()
-export class JwtModule { }
-
-  constructor(@Optional() @SkipSelf() parentModule: JwtModule) {
-    if (parentModule) {
-      throw new Error('JwtModule is already loaded. It should only be imported in your application\'s main module.');
-    }
-  }
-  static forRoot(options: JwtModuleOptions): ModuleWithProviders {
+export class NgxJwtModule {
+  public static forRoot(
+      options: INgxJwtModuleOptions): ModuleWithProviders {
     return {
-      ngModule: JwtModule,
+      ngModule: NgxJwtModule,
       providers: [
         {
           provide: HTTP_INTERCEPTORS,
@@ -41,9 +25,16 @@ export class JwtModule { }
         {
           provide: JWT_OPTIONS,
           useValue: options.config
-        },
-        JwtHelperService
+        }
       ]
     };
+  }
+
+  public constructor(
+      @Optional() @SkipSelf() parentModule: NgxJwtModule) {
+    if (parentModule) {
+      throw new Error(
+        'NgxJwtModule is already loaded. It should only be imported in your application\'s main module.');
+    }
   }
 }

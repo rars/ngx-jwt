@@ -15,6 +15,7 @@ Angular4+ module for adding JWT authorisation tokens to HTTP requests.
     import { BrowserModule } from '@angular/platform-browser';
     import { NgModule } from '@angular/core';
     import { NgxJwtModule } from 'ngx-jwt/ngx-jwt.module';
+    import { NgxJwtConfig } from 'ngx-jwt/ngx-jwt-config.class';
     import { AppComponent } from './app.component';
 
     @NgModule({
@@ -23,7 +24,14 @@ Angular4+ module for adding JWT authorisation tokens to HTTP requests.
       ],
       imports: [
         BrowserModule,
-        NgxJwtModule
+        NgxJwtModule.forRoot({
+          config: new NgxJwtConfig(
+            // replace this with a method for retrieving a token to inject
+            () => Observable.of(token),
+            // blacklist 'auth-service' domain
+            ['auth-service']
+          )
+        })
       ],
       providers: [],
       bootstrap: [AppComponent]
