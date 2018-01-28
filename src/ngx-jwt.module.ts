@@ -4,15 +4,10 @@ import { JWT_OPTIONS } from './jwt-options.token';
 import { JwtInterceptor } from './jwt.interceptor';
 import { INgxJwtConfig } from './ngx-jwt-config.interface';
 
-export interface INgxJwtModuleOptions {
-  jwtOptionsProvider?: Provider;
-  config?: INgxJwtConfig;
-}
-
 @NgModule()
 export class NgxJwtModule {
   public static forRoot(
-      options: INgxJwtModuleOptions): ModuleWithProviders {
+      config: INgxJwtConfig): ModuleWithProviders {
     return {
       ngModule: NgxJwtModule,
       providers: [
@@ -21,10 +16,9 @@ export class NgxJwtModule {
           useClass: JwtInterceptor,
           multi: true
         },
-        options.jwtOptionsProvider ||
         {
           provide: JWT_OPTIONS,
-          useValue: options.config
+          useValue: config
         }
       ]
     };
