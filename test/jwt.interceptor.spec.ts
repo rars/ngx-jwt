@@ -13,7 +13,6 @@ import {
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import { JwtInterceptor } from '../src/jwt.interceptor';
-import { JWT_OPTIONS } from '../src/jwt-options.token';
 import { NgxJwtConfig } from '../src/ngx-jwt-config.class';
 
 describe('JwtInterceptor', () => {
@@ -30,7 +29,7 @@ describe('JwtInterceptor', () => {
       ],
       providers: [
         {
-            provide: JWT_OPTIONS,
+            provide: NgxJwtConfig,
             useValue: config
         },
         {

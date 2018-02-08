@@ -18,8 +18,7 @@ import {
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/mergeMap';
 import { isTokenExpired } from 'jwt-inspect/jwt-helper';
-import { INgxJwtConfig } from './ngx-jwt-config.interface';
-import { JWT_OPTIONS } from './jwt-options.token';
+import { NgxJwtConfig } from './ngx-jwt-config.class';
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
@@ -33,8 +32,7 @@ export class JwtInterceptor implements HttpInterceptor {
   private readonly authScheme: string;
 
   public constructor(
-      @Inject(JWT_OPTIONS)
-      private config: INgxJwtConfig) {
+      private config: NgxJwtConfig) {
     this.tokenGetter = config.tokenGetter;
     this.headerName = config.headerName || 'Authorization';
     this.authScheme =
