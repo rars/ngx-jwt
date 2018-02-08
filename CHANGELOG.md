@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.2.0"></a>
+# [0.2.0](https://github.com/rars/ngx-jwt/compare/v0.1.0...v0.2.0) (2018-02-08)
+
+
+### Features
+
+* **module:** allow config to be provided in an aot-compatible manner ([e6a6982](https://github.com/rars/ngx-jwt/commit/e6a6982))
+
+
+### BREAKING CHANGES
+
+* **module:** config must be supplied to the module inside an options object
+
+
+
 <a name="0.1.0"></a>
 # [0.1.0](https://github.com/rars/ngx-jwt/compare/v0.0.1...v0.1.0) (2018-01-28)
 
