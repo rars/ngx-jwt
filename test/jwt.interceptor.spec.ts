@@ -5,13 +5,9 @@ import {
 } from '@angular/common/http/testing';
 import {
   HttpClient,
-  HttpEvent,
-  HttpRequest,
-  HttpHandler,
   HTTP_INTERCEPTORS
 } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/of';
+import { of } from 'rxjs';
 import { JwtInterceptor } from '../src/jwt.interceptor';
 import { NgxJwtConfig } from '../src/ngx-jwt-config.class';
 
@@ -19,7 +15,7 @@ describe('JwtInterceptor', () => {
 
   beforeEach(() => {
     const config = new NgxJwtConfig(
-      () => Observable.of('fakeToken'),
+      () => of('fakeToken'),
       ['auth-server']
     );
 
@@ -33,9 +29,9 @@ describe('JwtInterceptor', () => {
             useValue: config
         },
         {
+            multi: true,
             provide: HTTP_INTERCEPTORS,
-            useClass: JwtInterceptor,
-            multi: true
+            useClass: JwtInterceptor
         }
       ]
     });
