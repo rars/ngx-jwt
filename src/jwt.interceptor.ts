@@ -8,15 +8,15 @@
  *  > only call tokenGetter if request is whitelisted or not blacklisted,
  *  > minor refactoring of logic.
  */
-import { Injectable, Inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
   HttpInterceptor
 } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/mergeMap';
+import { Observable } from 'rxjs';
+import { mergeMap } from 'rxjs/operators';
 import { isTokenExpired } from 'jwt-inspect/jwt-helper';
 import { NgxJwtConfig } from './ngx-jwt-config.class';
 
@@ -32,7 +32,7 @@ export class JwtInterceptor implements HttpInterceptor {
   private readonly authScheme: string;
 
   public constructor(
-      private config: NgxJwtConfig) {
+      config: NgxJwtConfig) {
     this.tokenGetter = config.tokenGetter;
     this.headerName = config.headerName || 'Authorization';
     this.authScheme =
@@ -54,9 +54,11 @@ export class JwtInterceptor implements HttpInterceptor {
     }
 
     // Only retrieve token if we should attempt JWT token injection.
-    return this.tokenGetter().mergeMap((token: string) => {
-      return this.handleInterception(token, request, next);
-    });
+    return this.tokenGetter().pipe(
+      mergeMap((token: string) => {
+        return this.handleInterception(token, request, next);
+      })
+    );
   }
 
   private shouldAttemptJwtTokenInjection(

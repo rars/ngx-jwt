@@ -1,4 +1,4 @@
-import { NgModule, ModuleWithProviders, Optional, SkipSelf, Provider } from '@angular/core';
+import { NgModule, ModuleWithProviders, Optional, SkipSelf } from '@angular/core';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './jwt.interceptor';
 import { INgxJwtModuleOptions } from './ngx-jwt-module-options.interface';
@@ -12,9 +12,9 @@ export class NgxJwtModule {
       ngModule: NgxJwtModule,
       providers: [
         {
+          multi: true,
           provide: HTTP_INTERCEPTORS,
-          useClass: JwtInterceptor,
-          multi: true
+          useClass: JwtInterceptor
         },
         options.provider ||
         {

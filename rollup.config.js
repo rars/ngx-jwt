@@ -1,12 +1,15 @@
 export default {
-  format: 'umd',
-  moduleName: 'ngx-jwt',
+  output: {
+    format: 'umd',
+    name: 'ngx-jwt'
+  },
   external: [
     '@angular/core',
     '@angular/common/http',
     'jwt-inspect',
     'jwt-inspect/jwt-helper',
-    'rxjs/add/operator/mergeMap'
+    'rxjs',
+    'rxjs/operators'
   ],
   onwarn: (warning) => {
       const skip_codes = [
