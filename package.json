@@ -1,6 +1,6 @@
 {
   "name": "ngx-jwt",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Angular4+ module for injecting JWT into HttpClient requests.",
   "main": "ngx-jwt.bundle.js",
   "module": "index.js",
