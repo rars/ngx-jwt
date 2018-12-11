@@ -1,12 +1,9 @@
 //jshint strict: false
 module.exports = function(config) {
   config.set({
-
     basePath: '',
 
-    files: [
-      'test/Test.ts'
-    ],
+    files: ['test/Test.ts'],
 
     preprocessors: {
       'test/Test.ts': ['webpack', 'sourcemap']
@@ -20,10 +17,10 @@ module.exports = function(config) {
         extensions: ['.js', '.ts']
       },
       module: {
-        loaders: [
+        rules: [
           {
             test: /\.ts(x?)$/,
-            loader: 'ts-loader'
+            use: 'ts-loader'
           }
         ]
       }
@@ -34,7 +31,7 @@ module.exports = function(config) {
     },
 
     mime: {
-      'text/x-typescript': ['ts','tsx']
+      'text/x-typescript': ['ts', 'tsx']
     },
 
     frameworks: ['jasmine'],
@@ -48,10 +45,7 @@ module.exports = function(config) {
       'karma-jasmine-html-reporter'
     ],
 
-    reporters: [
-      'dots',
-      'kjhtml'
-    ],
+    reporters: ['dots', 'kjhtml'],
 
     //port: 9876,
     colors: true,

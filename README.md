@@ -59,6 +59,7 @@ Recommended versions by Angular version:
 | ^4.3.0  | ^0.2.0  |
 | ^5.0.0  | ^0.2.0  |
 | ^6.0.0  | ^0.3.0  |
+| ^7.0.0  | ^0.3.0  |
 
 ## Contributions welcome!
 If you have a feature or improvement you would like to see included, please raise an issue or a PR and I will review.
