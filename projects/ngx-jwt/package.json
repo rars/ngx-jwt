@@ -1,0 +1,9 @@
+{
+  "name": "ngx-jwt",
+  "version": "0.4.0",
+  "peerDependencies": {
+    "@angular/common": "^6.0.0 || ^7.0.0 || ^8.0.0",
+    "@angular/core": "^6.0.0 || ^7.0.0 || ^8.0.0",
+    "jwt-inspect": ">=0.1.0"
+  }
+}

@@ -1,7 +1,6 @@
 import { Observable } from 'rxjs';
 
 export class NgxJwtConfig {
-
   // Retrieves a JWT token to be inserted on HTTP requests.
   public readonly tokenGetter?: () => Observable<string>;
   // Identifies domains that JWT tokens should not be inserted for.
@@ -20,13 +19,14 @@ export class NgxJwtConfig {
   public readonly authScheme: string;
 
   public constructor(
-      tokenGetter: () => Observable<string>,
-      blacklistedDomains: Array<string | RegExp> = [],
-      whitelistedDomains: Array<string | RegExp> = [],
-      skipWhenExpired: boolean = false,
-      throwNoTokenError: boolean = true,
-      headerName: string = 'Authorization',
-      authScheme: string = 'Bearer') {
+    tokenGetter: () => Observable<string>,
+    blacklistedDomains: Array<string | RegExp> = [],
+    whitelistedDomains: Array<string | RegExp> = [],
+    skipWhenExpired: boolean = false,
+    throwNoTokenError: boolean = true,
+    headerName: string = 'Authorization',
+    authScheme: string = 'Bearer'
+  ) {
     this.tokenGetter = tokenGetter;
     this.blacklistedDomains = blacklistedDomains;
     this.whitelistedDomains = whitelistedDomains;
