@@ -2,7 +2,7 @@ import {
   NgModule,
   ModuleWithProviders,
   Optional,
-  SkipSelf
+  SkipSelf,
 } from '@angular/core';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './jwt.interceptor';
@@ -11,20 +11,22 @@ import { NgxJwtConfig } from './ngx-jwt-config.class';
 
 @NgModule()
 export class NgxJwtModule {
-  public static forRoot(options: INgxJwtModuleOptions): ModuleWithProviders<NgxJwtModule> {
+  public static forRoot(
+    options: INgxJwtModuleOptions
+  ): ModuleWithProviders<NgxJwtModule> {
     return {
       ngModule: NgxJwtModule,
       providers: [
         {
           multi: true,
           provide: HTTP_INTERCEPTORS,
-          useClass: JwtInterceptor
+          useClass: JwtInterceptor,
         },
         options.provider || {
           provide: NgxJwtConfig,
-          useValue: options.config
-        }
-      ]
+          useValue: options.config,
+        },
+      ],
     };
   }
 
