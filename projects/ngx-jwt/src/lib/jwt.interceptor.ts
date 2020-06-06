@@ -22,7 +22,6 @@ import { NgxJwtConfig } from './ngx-jwt-config.class';
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
-
   private readonly tokenGetter: () => Observable<string>;
   private readonly blacklistedDomains: Array<string | RegExp>;
   private readonly whitelistedDomains: Array<string | RegExp>;
@@ -31,8 +30,7 @@ export class JwtInterceptor implements HttpInterceptor {
   private readonly headerName: string;
   private readonly authScheme: string;
 
-  public constructor(
-      config: NgxJwtConfig) {
+  public constructor(config: NgxJwtConfig) {
     this.tokenGetter = config.tokenGetter;
     this.headerName = config.headerName || 'Authorization';
     this.authScheme =
@@ -46,8 +44,9 @@ export class JwtInterceptor implements HttpInterceptor {
   }
 
   public intercept(
-      request: HttpRequest<any>,
-      next: HttpHandler): Observable<HttpEvent<any>> {
+    request: HttpRequest<any>,
+    next: HttpHandler
+  ): Observable<HttpEvent<any>> {
     // Do not do anything to requests that do not need Jwt tokens injecting into them.
     if (!this.shouldAttemptJwtTokenInjection(request)) {
       return next.handle(request);
@@ -61,24 +60,23 @@ export class JwtInterceptor implements HttpInterceptor {
     );
   }
 
-  private shouldAttemptJwtTokenInjection(
-      request: HttpRequest<any>): boolean {
+  private shouldAttemptJwtTokenInjection(request: HttpRequest<any>): boolean {
     if (this.isBlacklistedDomain(request)) {
       return false;
     }
-    if (this.whitelistedDomains.length > 0 && !this.isWhitelistedDomain(request)) {
+    if (
+      this.whitelistedDomains.length > 0 &&
+      !this.isWhitelistedDomain(request)
+    ) {
       return false;
     }
     return true;
   }
 
-  private isBlacklistedDomain(
-      request: HttpRequest<any>): boolean {
+  private isBlacklistedDomain(request: HttpRequest<any>): boolean {
     try {
       const requestUrl = new URL(request.url);
-      return this.urlMatchesDomain(
-        requestUrl,
-        this.blacklistedDomains);
+      return this.urlMatchesDomain(requestUrl, this.blacklistedDomains);
     } catch (err) {
       // if we're here, the request is made to the
       // same domain as the Angular app so it's safe to
@@ -87,13 +85,10 @@ export class JwtInterceptor implements HttpInterceptor {
     }
   }
 
-  private isWhitelistedDomain(
-      request: HttpRequest<any>): boolean {
+  private isWhitelistedDomain(request: HttpRequest<any>): boolean {
     try {
       const requestUrl = new URL(request.url);
-      return this.urlMatchesDomain(
-        requestUrl,
-        this.whitelistedDomains);
+      return this.urlMatchesDomain(requestUrl, this.whitelistedDomains);
     } catch (err) {
       // if we're here, the request is made
       // to the same domain as the Angular app
@@ -102,24 +97,24 @@ export class JwtInterceptor implements HttpInterceptor {
     }
   }
 
-  private urlMatchesDomain(
-      url: URL,
-      domains: Array<string | RegExp>): boolean {
-    return domains.findIndex(
-      domain => {
+  private urlMatchesDomain(url: URL, domains: Array<string | RegExp>): boolean {
+    return (
+      domains.findIndex(domain => {
         if (typeof domain === 'string') {
           return domain === url.host;
         } else if (domain instanceof RegExp) {
           return domain.test(url.host);
         }
         return false;
-      }) > -1;
+      }) > -1
+    );
   }
 
   private handleInterception(
-      token: string,
-      request: HttpRequest<any>,
-      next: HttpHandler): Observable<HttpEvent<any>> {
+    token: string,
+    request: HttpRequest<any>,
+    next: HttpHandler
+  ): Observable<HttpEvent<any>> {
     if (!token && this.throwNoTokenError) {
       throw new Error('Could not get token from tokenGetter function.');
     }
@@ -135,8 +130,7 @@ export class JwtInterceptor implements HttpInterceptor {
     return next.handle(request);
   }
 
-  private shouldSkipJwtTokenInjection(
-      token: string): boolean {
+  private shouldSkipJwtTokenInjection(token: string): boolean {
     if (!token) {
       return true;
     }

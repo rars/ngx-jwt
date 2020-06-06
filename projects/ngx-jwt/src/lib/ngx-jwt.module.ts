@@ -1,4 +1,9 @@
-import { NgModule, ModuleWithProviders, Optional, SkipSelf } from '@angular/core';
+import {
+  NgModule,
+  ModuleWithProviders,
+  Optional,
+  SkipSelf
+} from '@angular/core';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './jwt.interceptor';
 import { INgxJwtModuleOptions } from './ngx-jwt-module-options.interface';
@@ -6,8 +11,7 @@ import { NgxJwtConfig } from './ngx-jwt-config.class';
 
 @NgModule()
 export class NgxJwtModule {
-  public static forRoot(
-      options: INgxJwtModuleOptions): ModuleWithProviders {
+  public static forRoot(options: INgxJwtModuleOptions): ModuleWithProviders {
     return {
       ngModule: NgxJwtModule,
       providers: [
@@ -16,8 +20,7 @@ export class NgxJwtModule {
           provide: HTTP_INTERCEPTORS,
           useClass: JwtInterceptor
         },
-        options.provider ||
-        {
+        options.provider || {
           provide: NgxJwtConfig,
           useValue: options.config
         }
@@ -25,11 +28,11 @@ export class NgxJwtModule {
     };
   }
 
-  public constructor(
-      @Optional() @SkipSelf() parentModule: NgxJwtModule) {
+  public constructor(@Optional() @SkipSelf() parentModule: NgxJwtModule) {
     if (parentModule) {
       throw new Error(
-        'NgxJwtModule is already loaded. It should only be imported in your application\'s main module.');
+        "NgxJwtModule is already loaded. It should only be imported in your application's main module."
+      );
     }
   }
 }
