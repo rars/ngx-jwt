@@ -11,7 +11,7 @@ import { NgxJwtConfig } from './ngx-jwt-config.class';
 
 @NgModule()
 export class NgxJwtModule {
-  public static forRoot(options: INgxJwtModuleOptions): ModuleWithProviders {
+  public static forRoot(options: INgxJwtModuleOptions): ModuleWithProviders<NgxJwtModule> {
     return {
       ngModule: NgxJwtModule,
       providers: [
