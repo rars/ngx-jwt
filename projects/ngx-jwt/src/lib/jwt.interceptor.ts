@@ -13,11 +13,11 @@ import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
-  HttpInterceptor
+  HttpInterceptor,
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { mergeMap } from 'rxjs/operators';
-import { isTokenExpired } from 'jwt-inspect/jwt-helper';
+import { isTokenExpired } from 'jwt-inspect';
 import { NgxJwtConfig } from './ngx-jwt-config.class';
 
 @Injectable()
@@ -99,7 +99,7 @@ export class JwtInterceptor implements HttpInterceptor {
 
   private urlMatchesDomain(url: URL, domains: Array<string | RegExp>): boolean {
     return (
-      domains.findIndex(domain => {
+      domains.findIndex((domain) => {
         if (typeof domain === 'string') {
           return domain === url.host;
         } else if (domain instanceof RegExp) {
@@ -122,8 +122,8 @@ export class JwtInterceptor implements HttpInterceptor {
     if (!this.shouldSkipJwtTokenInjection(token)) {
       request = request.clone({
         setHeaders: {
-          [this.headerName]: `${this.authScheme} ${token}`
-        }
+          [this.headerName]: `${this.authScheme} ${token}`,
+        },
       });
     }
 

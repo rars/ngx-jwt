@@ -1,6 +1,14 @@
-# Change Log
+# Changelog
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+<a name="0.5.0"></a>
+
+## [0.5.0](https://github.com/rars/ngx-jwt/compare/v0.4.0...v0.5.0) (2020-06-06)
+
+### Features
+
+- **ngx-jwt:** update to angular 9 ([8c2e751](https://github.com/rars/ngx-jwt/commit/8c2e75158de0bba5ecfa20f8cf0b03159cc35874))
 
 <a name="0.4.0"></a>
 
