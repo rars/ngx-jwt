@@ -1,6 +1,6 @@
 {
   "name": "ngx-jwt",
-  "version": "0.5.0",
+  "version": "1.0.0",
   "author": "Richard Russell",
   "licence": "MIT",
   "repository": {
@@ -12,8 +12,7 @@
     "tslib": "^2.0.0"
   },
   "peerDependencies": {
-    "@angular/common": ">=6.0.0",
-    "@angular/core": ">=6.0.0",
+    "@angular/core": ">=13.0.0",
     "jwt-inspect": ">=0.1.0"
   }
 }
