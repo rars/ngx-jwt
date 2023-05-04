@@ -12,7 +12,7 @@
     "tslib": "^2.0.0"
   },
   "peerDependencies": {
-    "@angular/core": ">=13.0.0",
+    "@angular/core": ">=16.0.0",
     "jwt-inspect": ">=0.1.0"
   }
 }
