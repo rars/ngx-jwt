@@ -30,6 +30,9 @@
           }
         }
       }
-    }},
-  "defaultProject": "ngx-jwt"
+    }
+  },
+  "cli": {
+    "analytics": false
+  }
 }

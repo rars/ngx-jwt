@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/rars/ngx-jwt/compare/v1.0.0...v2.0.0) (2023-05-04)
+
+
+### Features
+
+* **ngx-jwt:** update to Angular 16 ([ed39916](https://github.com/rars/ngx-jwt/commit/ed399163296f4e31a3af15ada289fe6a708aa87d))
+* **ngx-jwt:** update to use rxjs 7 ([06eb7a7](https://github.com/rars/ngx-jwt/commit/06eb7a704152ce3e5f17955881826ec17e35310e))
+
 ## [1.0.0](https://github.com/rars/ngx-jwt/compare/v0.5.0...v1.0.0) (2022-02-22)
 
 

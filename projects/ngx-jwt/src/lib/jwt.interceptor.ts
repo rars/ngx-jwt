@@ -15,8 +15,7 @@ import {
   HttpEvent,
   HttpInterceptor,
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { mergeMap } from 'rxjs/operators';
+import { Observable, mergeMap } from 'rxjs';
 import { isTokenExpired } from 'jwt-inspect';
 import { NgxJwtConfig } from './ngx-jwt-config.class';
 
