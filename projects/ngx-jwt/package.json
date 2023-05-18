@@ -13,6 +13,6 @@
   },
   "peerDependencies": {
     "@angular/core": ">=16.0.0",
-    "jwt-inspect": ">=0.1.0"
+    "jwt-inspect": ">=0.2.0"
   }
 }
