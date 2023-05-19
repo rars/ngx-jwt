@@ -43,9 +43,9 @@ export class JwtInterceptor implements HttpInterceptor {
   }
 
   public intercept(
-    request: HttpRequest<any>,
+    request: HttpRequest<unknown>,
     next: HttpHandler
-  ): Observable<HttpEvent<any>> {
+  ): Observable<HttpEvent<unknown>> {
     // Do not do anything to requests that do not need Jwt tokens injecting into them.
     if (!this.shouldAttemptJwtTokenInjection(request)) {
       return next.handle(request);
@@ -59,7 +59,9 @@ export class JwtInterceptor implements HttpInterceptor {
     );
   }
 
-  private shouldAttemptJwtTokenInjection(request: HttpRequest<any>): boolean {
+  private shouldAttemptJwtTokenInjection(
+    request: HttpRequest<unknown>
+  ): boolean {
     if (this.isBlacklistedDomain(request)) {
       return false;
     }
@@ -72,7 +74,7 @@ export class JwtInterceptor implements HttpInterceptor {
     return true;
   }
 
-  private isBlacklistedDomain(request: HttpRequest<any>): boolean {
+  private isBlacklistedDomain(request: HttpRequest<unknown>): boolean {
     try {
       const requestUrl = new URL(request.url);
       return this.urlMatchesDomain(requestUrl, this.blacklistedDomains);
@@ -84,7 +86,7 @@ export class JwtInterceptor implements HttpInterceptor {
     }
   }
 
-  private isWhitelistedDomain(request: HttpRequest<any>): boolean {
+  private isWhitelistedDomain(request: HttpRequest<unknown>): boolean {
     try {
       const requestUrl = new URL(request.url);
       return this.urlMatchesDomain(requestUrl, this.whitelistedDomains);
@@ -111,9 +113,9 @@ export class JwtInterceptor implements HttpInterceptor {
 
   private handleInterception(
     token: string,
-    request: HttpRequest<any>,
+    request: HttpRequest<unknown>,
     next: HttpHandler
-  ): Observable<HttpEvent<any>> {
+  ): Observable<HttpEvent<unknown>> {
     if (!token && this.throwNoTokenError) {
       throw new Error('Could not get token from tokenGetter function.');
     }
