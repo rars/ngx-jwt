@@ -22,10 +22,10 @@ export class NgxJwtConfig {
     tokenGetter: () => Observable<string>,
     blacklistedDomains: Array<string | RegExp> = [],
     whitelistedDomains: Array<string | RegExp> = [],
-    skipWhenExpired: boolean = false,
-    throwNoTokenError: boolean = true,
-    headerName: string = 'Authorization',
-    authScheme: string = 'Bearer'
+    skipWhenExpired = false,
+    throwNoTokenError = true,
+    headerName = 'Authorization',
+    authScheme = 'Bearer'
   ) {
     this.tokenGetter = tokenGetter;
     this.blacklistedDomains = blacklistedDomains;
