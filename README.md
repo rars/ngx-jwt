@@ -65,6 +65,7 @@ Recommended versions by Angular version:
 | ^9.0.0  | ^0.5.0  |
 | ^13.0.0 | ^1.0.0  |
 | ^16.0.0 | ^2.0.0  |
+| ^17.0.0 | ^3.0.0  |
 
 ## Contributions welcome!
 
