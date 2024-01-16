@@ -1,6 +1,7 @@
 # ngx-jwt
 
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
+[![Node.js CI](https://github.com/rars/ngx-jwt/actions/workflows/node.js.yml/badge.svg)](https://github.com/rars/ngx-jwt/actions/workflows/node.js.yml)
 
 Angular4+ module for adding JWT authorisation tokens to HTTP requests.
 
@@ -62,6 +63,9 @@ Recommended versions by Angular version:
 | ^7.0.0  | ^0.3.0  |
 | ^8.0.0  | ^0.4.0  |
 | ^9.0.0  | ^0.5.0  |
+| ^13.0.0 | ^1.0.0  |
+| ^16.0.0 | ^2.0.0  |
+| ^17.0.0 | ^3.0.0  |
 
 ## Contributions welcome!
 
