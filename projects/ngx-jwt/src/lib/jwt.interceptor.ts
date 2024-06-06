@@ -9,12 +9,7 @@
  *  > minor refactoring of logic.
  */
 import { Injectable } from '@angular/core';
-import {
-  HttpRequest,
-  HttpHandler,
-  HttpEvent,
-  HttpInterceptor,
-} from '@angular/common/http';
+import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
 import { Observable, mergeMap } from 'rxjs';
 import { isTokenExpired } from 'jwt-inspect';
 import { NgxJwtConfig } from './ngx-jwt-config.class';
