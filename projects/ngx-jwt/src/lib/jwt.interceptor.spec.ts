@@ -1,9 +1,6 @@
 import { inject, TestBed } from '@angular/core/testing';
-import {
-  HttpClientTestingModule,
-  HttpTestingController
-} from '@angular/common/http/testing';
-import { HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
+import { HttpClient, HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { of } from 'rxjs';
 import { JwtInterceptor } from './jwt.interceptor';
 import { NgxJwtConfig } from './ngx-jwt-config.class';
@@ -13,19 +10,21 @@ describe('JwtInterceptor', () => {
     const config = new NgxJwtConfig(() => of('fakeToken'), ['auth-server']);
 
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
-      providers: [
+    imports: [],
+    providers: [
         {
-          provide: NgxJwtConfig,
-          useValue: config
+            provide: NgxJwtConfig,
+            useValue: config
         },
         {
-          multi: true,
-          provide: HTTP_INTERCEPTORS,
-          useClass: JwtInterceptor
-        }
-      ]
-    });
+            multi: true,
+            provide: HTTP_INTERCEPTORS,
+            useClass: JwtInterceptor
+        },
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting()
+    ]
+});
   });
 
   describe('intercept()', () => {
